@@ -1,6 +1,6 @@
 __version__ = 0.1
 
-#from packages import Fonctions_Usuelles, Wolf_alpha
+from packages import Fonctions_Usuelles, Wolf_alpha
 
 import matplotlib.pyplot as plt
 import time
