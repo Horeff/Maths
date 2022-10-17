@@ -34,18 +34,15 @@ class fonction():
       self.der = sp.diff(self.e, self.x)
     except:
       self.der = None
-    print(self.der)
     try:
       self.int = sp.integrate(self.e, self.x)
     except : 
       self.int = None
-    print(self.int)
     try:
       self.inv = sp.solve(self.e - self.y, self.x, dict = True)
       self.inv = sp.simplify(self.inv[-1][self.x])
     except:
       self.inv = None
-    print(self.inv)
     try:
       self.limpinf = sp.limit(self.e, self.x, sp.oo, "+")
     except:
@@ -54,7 +51,6 @@ class fonction():
       self.limminf = sp.limit(self.e, self.x, sp.oo, "-")
     except:
       self.limminf = None
-    print(self.limpinf, self.limminf)
 
   def img(self, ant):
     return self.e.subs(self.x, ant)
