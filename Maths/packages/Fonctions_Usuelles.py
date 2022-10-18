@@ -26,7 +26,9 @@ y = sp.Symbol("y")
 
 class fonction():
   def __init__(self, e, name):
-    self.e = sp.simplify(e)
+    try:
+      self.e = sp.simplify(e)
+    except:pass
     self.x = sp.Symbol("x")
     self.y = sp.Symbol("y")
     self.name = name
