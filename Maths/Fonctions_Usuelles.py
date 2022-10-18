@@ -43,11 +43,11 @@ class fonction():
     except:
       self.inv = None
     try:
-      self.limpinf = sp.limit(self.e, self.x, sp.oo, "+")
+      self.limpinf = sp.limit(self.e, self.x, "+oo")
     except:
       self.limpinf = None
     try:
-      self.limminf = sp.limit(self.e, self.x, sp.oo, "-")
+      self.limminf = sp.limit(self.e, self.x, "-oo")
     except:
       self.limminf = None
     try:
