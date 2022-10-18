@@ -55,10 +55,8 @@ class fonction():
     self.show()
     plt.title("Cf")
     plt.close(fig)
-    plt.savefig(os.getcwd()+"/Maths/packages/generation_mpl_save_to_send.png")
-    print("ok")
-    with open(os.getcwd()+"/Maths/packages/generation_mpl_save_to_send.png","rb") as f:
-      self.rep = f
+    plt.savefig("generation_mpl_save_to_send.png")
+    self.rep = "generation_mpl_save_to_send.png"
 
   def img(self, ant):
     return self.e.subs(self.x, ant)
