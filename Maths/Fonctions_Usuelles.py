@@ -50,13 +50,16 @@ class fonction():
       self.limminf = sp.limit(self.e, self.x, sp.oo, "-")
     except:
       self.limminf = None
-    fig=plt.figure()
-    plt.ion()
-    self.show()
-    plt.title("Cf")
-    plt.close(fig)
-    plt.savefig("generation_mpl_save_to_send.png")
-    self.rep = "generation_mpl_save_to_send.png"
+    try:
+      fig=plt.figure()
+      plt.ion()
+      self.show()
+      plt.title("Cf")
+      plt.close(fig)
+      plt.savefig("generation_mpl_save_to_send.png")
+      self.rep = "generation_mpl_save_to_send.png"
+    except:
+      self.rep = None
 
   def img(self, ant):
     return self.e.subs(self.x, ant)
