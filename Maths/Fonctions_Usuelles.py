@@ -1,8 +1,4 @@
-import numpy as np
-import pandas as pd
 import matplotlib.pyplot as plt
-import scipy
-import scipy.stats
 import time
 import math
 import sympy as sp
