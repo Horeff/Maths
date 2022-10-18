@@ -24,7 +24,8 @@ class fonction():
   def __init__(self, e, name):
     try:
       self.e = sp.simplify(e)
-    except:pass
+    except:
+      self.e = e
     self.x = sp.Symbol("x")
     self.y = sp.Symbol("y")
     self.name = name
@@ -49,6 +50,15 @@ class fonction():
       self.limminf = sp.limit(self.e, self.x, sp.oo, "-")
     except:
       self.limminf = None
+    fig=plt.figure()
+    plt.ion()
+    self.show()
+    plt.title("Cf")
+    plt.close(fig)
+    plt.savefig(os.getcwd()+"/Maths/packages/generation_mpl_save_to_send.png")
+    print("ok")
+    with open(os.getcwd()+"/Maths/packages/generation_mpl_save_to_send.png","rb") as f:
+      self.rep = f
 
   def img(self, ant):
     return self.e.subs(self.x, ant)
