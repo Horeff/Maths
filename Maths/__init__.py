@@ -4,6 +4,6 @@ from Maths import Fonctions_Usuelles
 
 class maths():
   def __init__(self):
-    self.func = fonction
+    self.func = Fonctions_Usuelles.fonction
 
 Maths = maths()
