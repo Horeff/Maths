@@ -1,6 +1,6 @@
 __version__ = 0.1
 
-from Maths.packages import Fonctions_Usuelles, Wolf_alpha
+from Maths import pacakges.Fonctions_Usuelles, packages.Wolf_alpha
 
 class maths():
   def __init__(self):
