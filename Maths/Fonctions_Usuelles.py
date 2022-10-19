@@ -36,7 +36,6 @@ class fonction():
       self.int = sp.integrate(self.e, self.x)
     except : 
       self.int = None
-    print(self.int)
     try:
       self.inv = sp.solve(self.e - self.y, self.x, dict = True)
       self.inv = sp.simplify(self.inv[-1][self.x])
