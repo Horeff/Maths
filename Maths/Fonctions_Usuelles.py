@@ -5,8 +5,6 @@ import sympy as sp
 import importlib
 import os
 
-sp.init_printing()
-
 """
 expressions (param e) :
 [str]
@@ -22,36 +20,40 @@ y = sp.Symbol("y")
 
 class fonction():
   def __init__(self, e, name):
-    self.e = sp.simplify(e)
+    sp.init_printing()
+    try:
+      self.e = sp.simplify(e)
+    except:
+      self.e = e
     self.x = sp.Symbol("x")
     self.y = sp.Symbol("y")
     self.name = name
     try:
-      self.der = sp.diff(self.e, self.x)
+      self.der = sp.latex(sp.diff(self.e, self.x))
     except:
       self.der = None
     try:
-      self.int = sp.integrate(self.e, self.x)
+      self.int = sp.latex(sp.integrate(self.e, self.x))
     except : 
       self.int = None
+    print(self.int)
     try:
       self.inv = sp.solve(self.e - self.y, self.x, dict = True)
-      self.inv = sp.simplify(self.inv[-1][self.x])
+      self.inv = sp.latex(sp.simplify(self.inv[-1][self.x]))
     except:
       self.inv = None
     try:
-      self.limpinf = sp.limit(self.e, self.x, "+oo")
+      self.limpinf = sp.latex(sp.limit(self.e, self.x, "+oo"))
     except:
       self.limpinf = None
     try:
-      self.limminf = sp.limit(self.e, self.x, "-oo")
+      self.limminf = sp.latex(sp.limit(self.e, self.x, "-oo"))
     except:
       self.limminf = None
     try:
       fig=plt.figure()
       plt.ion()
       self.show()
-      plt.title("Cf")
       plt.close(fig)
       plt.savefig("generation_mpl_save_to_send.png")
       self.rep = "generation_mpl_save_to_send.png"
@@ -68,4 +70,4 @@ class fonction():
     return sp.limit(self.e, self.x, tend)
 
   def show(self):
-    sp.plot(self.e,(self.x,-6,6), title=f"Graphique de ${sp.latex(self.e)}$")
+    sp.plot(self.e,(self.x,-6,6), title=f"Courbe de f(x) = ${sp.latex(self.e)}$")
