@@ -29,25 +29,25 @@ class fonction():
     self.y = sp.Symbol("y")
     self.name = name
     try:
-      self.der = sp.latex(sp.diff(self.e, self.x))
+      self.der = sp.diff(self.e, self.x)
     except:
       self.der = None
     try:
-      self.int = sp.latex(sp.integrate(self.e, self.x))
+      self.int = sp.integrate(self.e, self.x)
     except : 
       self.int = None
     print(self.int)
     try:
       self.inv = sp.solve(self.e - self.y, self.x, dict = True)
-      self.inv = sp.latex(sp.simplify(self.inv[-1][self.x]))
+      self.inv = sp.simplify(self.inv[-1][self.x])
     except:
       self.inv = None
     try:
-      self.limpinf = sp.latex(sp.limit(self.e, self.x, "+oo"))
+      self.limpinf = sp.limit(self.e, self.x, "+oo")
     except:
       self.limpinf = None
     try:
-      self.limminf = sp.latex(sp.limit(self.e, self.x, "-oo"))
+      self.limminf = sp.limit(self.e, self.x, "-oo")
     except:
       self.limminf = None
     try:
