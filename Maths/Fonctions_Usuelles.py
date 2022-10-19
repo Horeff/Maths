@@ -27,6 +27,7 @@ class fonction():
       self.e = e
     self.x = sp.Symbol("x")
     self.y = sp.Symbol("y")
+    self.i = sp.Symbol("i")
     self.name = name
     try:
       self.der = sp.diff(self.e, self.x)
