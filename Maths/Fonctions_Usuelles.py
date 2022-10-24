@@ -20,7 +20,6 @@ y = sp.Symbol("y")
 
 class fonction():
   def __init__(self, e, name):
-    sp.init_printing()
     try:
       self.e = sp.simplify(e)
     except:
@@ -67,6 +66,9 @@ class fonction():
 
   def limit(self, tend):
     return sp.limit(self.e, self.x, tend)
+  
+  def sub(self,var,expr):
+    return self.e.subs(var,sp.simplify(expr))
 
   def show(self):
     sp.plot(self.e,(self.x,-6,6), title=f"Courbe de f(x) = ${sp.latex(self.e)}$")
