@@ -23,3 +23,5 @@ class model():
             if j == len(distances):
                 flag = False
     return (cx,cy),np.mean(distances)
+
+  mode = model()
