@@ -24,4 +24,4 @@ class model():
                 flag = False
     return (cx,cy),np.mean(distances)
 
-  mode = model()
+mode = model()
