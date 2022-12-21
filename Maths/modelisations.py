@@ -30,7 +30,7 @@ class model():
                 j += 1
                 if j == len(distances):
                     flag = False
-        xp, yp = fig.circle((cx, cy), a=2*np.pi, r=np.mean(distances))
+        xp, yp = fig.circle((cx, cy), a=2*np.pi, r=np.mean(distances), resolution=len(x)-1)
         coef = self.Coef_correl((x, y), (xp, yp))
         b, kol = self.Kol_Smir((x, y), (xp, yp))
         return (cx, cy), np.mean(distances), (b, kol, coef)
@@ -42,7 +42,7 @@ class model():
         list_y = Y[1]
         indexy = Y[0]
         if len(indexx) < len(indexy):
-            list_y = list_y[:len()]
+            list_y = list_y[:len(indexx)]
         elif len(indexx) > len(indexy):
             list_x = list_x[:len(indexy)]
         x_Moy = sum(list_x) / len(list_x)
@@ -67,9 +67,9 @@ class model():
         data_y = Y[1]
         res = sp.ks_2samp(data_x, data_y)
         if res[1] < 0.05:
-            return False,res
+            return False, res
         else:
-            return True,res
+            return True, res
 
 
 mode = model()
