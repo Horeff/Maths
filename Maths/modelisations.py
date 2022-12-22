@@ -76,12 +76,12 @@ class model():
         liste = [[]]
         for i in range(n):
             liste = liste + [j + [i] for j in liste]
-        return liste
+        return liste.sort(key = len)
 
-    def tri_pas(self, n):
+    def triangle_de_Pascal(self, n):
         liste = [1]
         for i in range(n):
-            liste = [liste[j]+liste[j]-1 for j in range(1, len(liste))] + [1]
+            liste = [1] + [liste[j]+liste[j-1] for j in range(1, len(liste))] + [1]
         return liste
 
     def polyfit(self, x : list, y : list):
@@ -92,28 +92,39 @@ class model():
         :param y: ordonnées
         :return: Liste des paramètres du polynôme.
         """
-        print(self.tri_pas(4))
         #plt.plot(x, y)
         #plt.show()
         absc = np.array(x)
         ord = np.array(y)
         tab = []
+        ls = []
+        # [1,2,3] -> [[2,3],[1,3],[1,2]]
         for i in range(len(x)):
             tab.append(x[:i]+x[i+1:])
         weights = []
+        # poids : [((1-2)*(1-3))e-1, ((2-1)*(2-3))e-1, ((3-1)*(3-2))e-1
         for i in range(len(x)):
             weights.append(np.prod([1/(x[i]-tab[i][j]) for j in tab[i]]))
-        ls = []
-        tab1 = np.array(tab)*(-1)
+        # on trouve les parties : [[],[1],[2],[3],[1,2],[1,3],[2,3],[1,2,3]]
+        lst = self.parties(len(tab[-1]))
+        #on calcule les coefficients [[a],[b],[a,b]] -> [a,b,ab]
+        coefs = []
+        for i in lst:
+            coefs.append(np.prod([tab[lst[i][j]] for j in range(len(lst[i]))]))
+        print(coefs)
+        Pascal = self.triangle_de_Pascal(len(lst[-1]))
+        Pascal = [0] + Pascal + [0]
         for i in range(len(tab)):
-            lst = self.parties(len(tab[i]))
+            l = [tab[i][Pascal[h-1]:Pascal[h]] for h in range(1, len(Pascal))]
+            ls.append([np.sum(l[h]) for h in range(len(l))])
+        for i in range(len(ls)):
 
-            ls.append()
 
 
 
 
 
 mode = model()
-x, y = [i for i in range(-1000, 1000)], [4*i**4-32*i**3+2/3*i-123 for i in range(-1000, 1000)]
+#x, y = [i for i in range(-100, 100)], [4*i**4-32*i**3+2/3*i-123 for i in range(-100, 100)]
+x,y = [1,2,3], [1,4,9]
 mode.polyfit(x, y)
