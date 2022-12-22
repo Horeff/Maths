@@ -1,6 +1,7 @@
 import numpy as np
 from scipy import stats as sp
 from Algorithmique import fig
+from matplotlib import pyplot as plt
 
 class model():
     def __init__(self):
@@ -71,5 +72,37 @@ class model():
         else:
             return True, res
 
+    def parties(self, n):
+        liste = [[]]
+        for i in range(n):
+            liste = liste + [[j] + [i] for j in liste]
+        return liste
+
+    def polyfit(self, x : list, y : list):
+        """
+        Utilise le polynôme de Lagrange pour trouver le polynôme de
+        plus petit degré correspondant le mieux au jeu de données
+        :param x: abscisses
+        :param y: ordonnées
+        :return: Liste des paramètres du polynôme.
+        """
+        print(self.parties(4))
+        #plt.plot(x, y)
+        #plt.show()
+        absc = np.array(x)
+        ord = np.array(y)
+        tab = []
+        for i in range(len(x)):
+            tab.append(x[:i]+x[i+1:])
+        weights = []
+        for i in range(len(x)):
+            weights.append(np.prod([1/(x[i]-tab[j]) for j in tab[i]]))
+        ls = []
+
+
+
+
 
 mode = model()
+x, y = [i for i in range(-1000, 1000)], [4*i**4-32*i**3+2/3*i-123 for i in range(-1000, 1000)]
+mode.polyfit(x, y)
