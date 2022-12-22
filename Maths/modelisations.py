@@ -75,7 +75,13 @@ class model():
     def parties(self, n):
         liste = [[]]
         for i in range(n):
-            liste = liste + [[j] + [i] for j in liste]
+            liste = liste + [j + [i] for j in liste]
+        return liste
+
+    def tri_pas(self, n):
+        liste = [1]
+        for i in range(n):
+            liste = [liste[j]+liste[j]-1 for j in range(1, len(liste))] + [1]
         return liste
 
     def polyfit(self, x : list, y : list):
@@ -86,7 +92,7 @@ class model():
         :param y: ordonnées
         :return: Liste des paramètres du polynôme.
         """
-        print(self.parties(4))
+        print(self.tri_pas(4))
         #plt.plot(x, y)
         #plt.show()
         absc = np.array(x)
@@ -96,8 +102,13 @@ class model():
             tab.append(x[:i]+x[i+1:])
         weights = []
         for i in range(len(x)):
-            weights.append(np.prod([1/(x[i]-tab[j]) for j in tab[i]]))
+            weights.append(np.prod([1/(x[i]-tab[i][j]) for j in tab[i]]))
         ls = []
+        tab1 = np.array(tab)*(-1)
+        for i in range(len(tab)):
+            lst = self.parties(len(tab[i]))
+
+            ls.append()
 
 
 
