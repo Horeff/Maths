@@ -76,7 +76,8 @@ class model():
         liste = [[]]
         for i in range(n):
             liste = liste + [j + [i] for j in liste]
-        return liste.sort(key = len)
+        liste.sort(key=len)
+        return liste
 
     def triangle_de_Pascal(self, n):
         liste = [1]
@@ -102,22 +103,32 @@ class model():
         for i in range(len(x)):
             tab.append(x[:i]+x[i+1:])
         weights = []
-        # poids : [((1-2)*(1-3))e-1, ((2-1)*(2-3))e-1, ((3-1)*(3-2))e-1
+        # poids : [((1-2)*(1-3))e-1, ((2-1)*(2-3))e-1, ((3-1)*(3-2))e-1]
         for i in range(len(x)):
-            weights.append(np.prod([1/(x[i]-tab[i][j]) for j in tab[i]]))
-        # on trouve les parties : [[],[1],[2],[3],[1,2],[1,3],[2,3],[1,2,3]]
-        lst = self.parties(len(tab[-1]))
-        #on calcule les coefficients [[a],[b],[a,b]] -> [a,b,ab]
-        coefs = []
-        for i in lst:
-            coefs.append(np.prod([tab[lst[i][j]] for j in range(len(lst[i]))]))
-        print(coefs)
+            weights.append(np.prod([1/(x[i]-tab[i][j]) for j in range(len(tab[i]))]))
+        # on trouve les parties : [[],[0],[1],[2],[0,1],[0,2],[1,2],[0,1,2]]
+        lst = self.parties(len(tab[0]))
+
         Pascal = self.triangle_de_Pascal(len(lst[-1]))
-        Pascal = [0] + Pascal + [0]
         for i in range(len(tab)):
-            l = [tab[i][Pascal[h-1]:Pascal[h]] for h in range(1, len(Pascal))]
-            ls.append([np.sum(l[h]) for h in range(len(l))])
-        for i in range(len(ls)):
+            coefs = []
+            # on calcule les coefficients [[a],[b],[a,b]] -> [a,b,ab]
+            for j in lst:
+                coefs.append(np.prod([-tab[i][h] for h in j]))
+            index = 0
+            l = []
+            for h in range(len(Pascal)):
+                l.append(coefs[index:index+Pascal[h]])
+                index += Pascal[h]
+            ls.append([np.sum(l[h])*weights[i]*y[i] for h in range(len(l))])
+        L = []
+        for i in range(len(ls[0])):
+            k = 0
+            for j in range(len(ls)):
+                k += ls[j][i]
+            L.append(k)
+        print(L)
+        return L
 
 
 
@@ -125,6 +136,5 @@ class model():
 
 
 mode = model()
-#x, y = [i for i in range(-100, 100)], [4*i**4-32*i**3+2/3*i-123 for i in range(-100, 100)]
-x,y = [1,2,3], [1,4,9]
+x, y = [i for i in range(-100, 100)], [4*i**4-32*i**3+2/3*i-123 for i in range(-100, 100)]
 mode.polyfit(x, y)
