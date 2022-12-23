@@ -72,12 +72,12 @@ class model():
         else:
             return True, res
 
-    def parties(self, n):
-        liste = [[]]
-        for i in range(n):
-            liste = liste + [j + [i] for j in liste]
-        liste.sort(key=len)
-        return liste
+    def parties(self, n, liste = [[]], j = 0):
+        if j == n-1:
+            liste.sort(key = len)
+            return liste
+        else:
+            return self.parties(n, liste = liste + [i + [j] for i in liste], j = j+1)
 
     def triangle_de_Pascal(self, n):
         liste = [1]
@@ -85,7 +85,7 @@ class model():
             liste = [1] + [liste[j]+liste[j-1] for j in range(1, len(liste))] + [1]
         return liste
 
-    def polyfit(self, x : list, y : list):
+    def Lagrange(self, x : list, y : list) -> list:
         """
         Utilise le polynôme de Lagrange pour trouver le polynôme de
         plus petit degré correspondant le mieux au jeu de données
@@ -93,10 +93,6 @@ class model():
         :param y: ordonnées
         :return: Liste des paramètres du polynôme.
         """
-        #plt.plot(x, y)
-        #plt.show()
-        absc = np.array(x)
-        ord = np.array(y)
         tab = []
         ls = []
         # [1,2,3] -> [[2,3],[1,3],[1,2]]
@@ -108,7 +104,6 @@ class model():
             weights.append(np.prod([1/(x[i]-tab[i][j]) for j in range(len(tab[i]))]))
         # on trouve les parties : [[],[0],[1],[2],[0,1],[0,2],[1,2],[0,1,2]]
         lst = self.parties(len(tab[0]))
-
         Pascal = self.triangle_de_Pascal(len(lst[-1]))
         for i in range(len(tab)):
             coefs = []
@@ -127,14 +122,20 @@ class model():
             for j in range(len(ls)):
                 k += ls[j][i]
             L.append(k)
-        print(L)
         return L
 
+    def polyfit(self, x, y) -> list:
+        return None
 
 
 
 
 
 mode = model()
-x, y = [i for i in range(-100, 100)], [4*i**4-32*i**3+2/3*i-123 for i in range(-100, 100)]
-mode.polyfit(x, y)
+x, y = [i for i in range(-10, 10)], [i**2 for i in range(-10, 10)]
+plt.plot(x, y)
+L = mode.polyfit(x, y)
+print(L)
+xp, yp = [i for i in range(-10, 10)], [np.sum([L[j]*i**(len(L)-j) for j in range(len(L))]) for i in range(-10, 10)]
+plt.plot(xp, yp)
+plt.show()
