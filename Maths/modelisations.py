@@ -131,12 +131,10 @@ class model():
 
     def fit(self, x : iter, y : iter, print_tests : bool = False):
         L = []
-        plt.scatter(x, y)
         for func in self.functions.funcs:
             try:
                 res = optimize.curve_fit(func, xdata = x, ydata = y)[0]
                 Y = [func(i, *res) for i in x]
-                plt.plot(x, Y)
                 coef = self.Coef_correl((x, y), (x, Y))
                 kol = self.Kol_Smir((x, y), (x, Y))
                 L.append((coef, kol, res, func))
@@ -170,14 +168,3 @@ class fit_func():
 
 
 mode = model(fit_func())
-x = np.linspace(0, 1, 101)
-y = 1 + x**2 + 0.1*x * np.random.random(len(x))
-res = mode.fit(x, y, print_tests=True)
-print(res)
-Y = [res[3](i, *res[2]) for i in x]
-plt.figure(figsize = (10,8))
-plt.plot(x, y, 'b.')
-plt.plot(x, Y, 'r')
-plt.xlabel('x')
-plt.ylabel('y')
-plt.show()
