@@ -2,10 +2,13 @@ import numpy as np
 from scipy import stats as sp
 from Algorithmique import fig
 from matplotlib import pyplot as plt
+from scipy import optimize
+from Functions import functions
+from inspect import getmembers, ismethod
 
 class model():
-    def __init__(self):
-        pass
+    def __init__(self, functions):
+        self.functions = functions
 
     def circlefit(self, x, y):
         """
@@ -18,6 +21,7 @@ class model():
         cy = 0
         flag = True
         counter = 1
+        distances = []
         while flag:
             distances = [np.sqrt((x[i] - cx) ** 2 + (y[i] - cy) ** 2) for i in range(len(x))]
             cx += (x[distances.index(max(distances))] - cx) / (10 / max(distances))
@@ -73,11 +77,12 @@ class model():
             return True, res
 
     def parties(self, n, liste = [[]], j = 0):
+        l = liste
         if j == n-1:
-            liste.sort(key = len)
-            return liste
+            l.sort(key = len)
+            return l
         else:
-            return self.parties(n, liste = liste + [i + [j] for i in liste], j = j+1)
+            return self.parties(n, liste = l + [i + [j] for i in l], j = j+1)
 
     def triangle_de_Pascal(self, n):
         liste = [1]
@@ -124,18 +129,55 @@ class model():
             L.append(k)
         return L
 
-    def polyfit(self, x, y) -> list:
-        return None
+    def fit(self, x : iter, y : iter, print_tests : bool = False):
+        L = []
+        plt.scatter(x, y)
+        for func in self.functions.funcs:
+            try:
+                res = optimize.curve_fit(func, xdata = x, ydata = y)[0]
+                Y = [func(i, *res) for i in x]
+                plt.plot(x, Y)
+                coef = self.Coef_correl((x, y), (x, Y))
+                kol = self.Kol_Smir((x, y), (x, Y))
+                L.append((coef, kol, res, func))
+            except:pass
+        max1, max2, ind1, ind2 = 0, 1, None, None
+        for i in range(len(L)):
+            if L[i][1][1][1] > max1:
+                max1 = L[i][1][1][1]
+                ind1 = i
+            if L[i][1][1][0] < max2:
+                max2 = L[i][1][1][0]
+                ind2 = i
+        if print_tests:
+            for i in L:
+                print(f"tested with {i[-1]} : coef = {i[0]} ; kol = {i[1]}")
+        if ind1 == ind2:
+            if print_tests: print(f"got : {L[ind1][-1]}")
+            return L[ind1]
+        else:
+            if print_tests: print(f"got : {L[ind1][-1]} and {L[ind2][-1]}")
+            return L[ind1], L[ind2]
 
 
+class fit_func():
+    def __init__(self):
+        self.funcs = self.fitting_funcs()
+
+    def fitting_funcs(self):
+        g = [a[1] for a in getmembers(functions) if ismethod(a[1])]
+        return g
 
 
-
-mode = model()
-x, y = [i for i in range(-10, 10)], [i**2 for i in range(-10, 10)]
-plt.plot(x, y)
-L = mode.polyfit(x, y)
-print(L)
-xp, yp = [i for i in range(-10, 10)], [np.sum([L[j]*i**(len(L)-j) for j in range(len(L))]) for i in range(-10, 10)]
-plt.plot(xp, yp)
+mode = model(fit_func())
+x = np.linspace(0, 1, 101)
+y = 1 + x**2 + 0.1*x * np.random.random(len(x))
+res = mode.fit(x, y, print_tests=True)
+print(res)
+Y = [res[3](i, *res[2]) for i in x]
+plt.figure(figsize = (10,8))
+plt.plot(x, y, 'b.')
+plt.plot(x, Y, 'r')
+plt.xlabel('x')
+plt.ylabel('y')
 plt.show()
