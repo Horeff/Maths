@@ -3,7 +3,7 @@ from scipy import stats as sp
 from Algorithmique import fig
 from matplotlib import pyplot as plt
 from scipy import optimize
-from Functions import functions
+from Maths import Functions.functions
 from inspect import getmembers, ismethod
 
 class model():
