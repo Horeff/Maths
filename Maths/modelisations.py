@@ -161,8 +161,12 @@ class model():
                 if return_every_modelisation:
                     return (L[ind1], L[ind2]), L
                 else:
-                    return (L[ind1], L[ind2]), L
-            else:return None, L
+                    return (L[ind1], L[ind2])
+            else:
+                if return_every_modelisation:
+                    return None, L
+                else:
+                    return L
 
 
 class fit_func():
