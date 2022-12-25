@@ -162,6 +162,7 @@ class fit_func():
     def __init__(self):
         self.funcs = self.fitting_funcs()
         self.names = self.fitting_funcs_names()
+        self.expression = functions.expression
 
     def fitting_funcs(self):
         g = [a[1] for a in getmembers(functions) if ismethod(a[1])]
