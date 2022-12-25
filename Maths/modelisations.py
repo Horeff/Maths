@@ -171,12 +171,23 @@ class fit_func():
         self.expression = functions.expression
 
     def fitting_funcs(self):
-        g = [a[1] for a in getmembers(functions) if ismethod(a[1])]
+        g = [a[1] for a in getmembers(functions) if ismethod(a[1]) and a[0] != "__init__"]
         return g
     
     def fitting_funcs_names(self):
-        g = [a[0] for a in getmembers(functions) if ismethod(a[1])]
+        g = [a[0] for a in getmembers(functions) if ismethod(a[1]) and a[0] != "__init__"]
         return g
 
 
 mode = model(fit_func())
+x = np.linspace(0, 1, 101)
+y = 1 + x**3 + 0.1*x * np.random.random(len(x))
+res = mode.fit(x, y, print_tests=True)
+print(res)
+Y = [res[3](i, *res[2]) for i in x]
+plt.figure(figsize = (10,8))
+plt.plot(x, y, 'b.')
+plt.plot(x, Y, 'r')
+plt.xlabel('x')
+plt.ylabel('y')
+plt.show()
