@@ -139,9 +139,6 @@ class model():
                 kol = self.Kol_Smir((x, y), (x, Y))
                 L.append((coef, kol, res, func))
             except:pass
-        if return_every_modelisation:
-            return L
-        else:
             max1, max2, ind1, ind2 = 0, 1, None, None
             for i in range(len(L)):
                 if L[i][1][1][1] > max1:
@@ -155,10 +152,16 @@ class model():
                     print(f"tested with {i[-1]} : coef = {i[0]} ; kol = {i[1]}")
             if ind1 == ind2:
                 if print_tests: print(f"got : {L[ind1][-1]}")
-                return L[ind1]
+                if return_every_modelisation:
+                    return L[ind1], L
+                else:
+                    return L[ind1]
             else:
                 if print_tests: print(f"got : {L[ind1][-1]} and {L[ind2][-1]}")
-                return L[ind1], L[ind2]
+                if return_every_modelisation:
+                    return (L[ind1], L[ind2]), L
+                else:
+                    return (L[ind1], L[ind2]),
 
 
 class fit_func():
