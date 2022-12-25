@@ -161,7 +161,7 @@ class model():
             if return_every_modelisation:
                 return (L[ind1], L[ind2]), L
             else:
-                return (L[ind1], L[ind2]),L
+                return (L[ind1], L[ind2])
         else:return None, L
 
 
