@@ -156,12 +156,13 @@ class model():
                     return L[ind1], L
                 else:
                     return L[ind1]
-            else:
+            elif ind1 is not None and ind2 is not None:
                 if print_tests: print(f"got : {L[ind1][-1]} and {L[ind2][-1]}")
                 if return_every_modelisation:
                     return (L[ind1], L[ind2]), L
                 else:
-                    return (L[ind1], L[ind2]),
+                    return (L[ind1], L[ind2]), L
+            else:return None, L
 
 
 class fit_func():
@@ -180,14 +181,3 @@ class fit_func():
 
 
 mode = model(fit_func())
-x = np.linspace(0, 1, 101)
-y = 1 + x**3 + 0.1*x * np.random.random(len(x))
-res = mode.fit(x, y, print_tests=True)
-print(res)
-Y = [res[3](i, *res[2]) for i in x]
-plt.figure(figsize = (10,8))
-plt.plot(x, y, 'b.')
-plt.plot(x, Y, 'r')
-plt.xlabel('x')
-plt.ylabel('y')
-plt.show()
