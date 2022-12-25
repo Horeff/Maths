@@ -2,7 +2,7 @@ import numpy as np
 
 class func():
     def __init__(self):
-        self.expressions = {"lin": (["a", "b"], "a * x+b"), "exp": (["a", "b", "c"], "a * exp(x*b) + c"),
+        self.expression = {"lin": (["a", "b"], "a * x+b"), "exp": (["a", "b", "c"], "a * exp(x*b) + c"),
                             "sin": (["a", "b", "c", "d"], "a * sin(b*x + c) + d"),
                             "pol": (["a", "b", "c"], "a*x**2 + b*x + c"),
                             "pol3": (["a", "b", "c", "d"], "a*x**3 + b*x**2 + c*x + d"),
