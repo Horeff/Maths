@@ -139,30 +139,30 @@ class model():
                 kol = self.Kol_Smir((x, y), (x, Y))
                 L.append((coef, kol, res, func))
             except:pass
-            max1, max2, ind1, ind2 = 0, 1, None, None
-            for i in range(len(L)):
-                if L[i][1][1][1] > max1:
-                    max1 = L[i][1][1][1]
-                    ind1 = i
-                if L[i][1][1][0] < max2:
-                    max2 = L[i][1][1][0]
-                    ind2 = i
-            if print_tests:
-                for i in L:
-                    print(f"tested with {i[-1]} : coef = {i[0]} ; kol = {i[1]}")
-            if ind1 == ind2:
-                if print_tests: print(f"got : {L[ind1][-1]}")
-                if return_every_modelisation:
-                    return L[ind1], L
-                else:
-                    return L[ind1]
-            elif ind1 is not None and ind2 is not None:
-                if print_tests: print(f"got : {L[ind1][-1]} and {L[ind2][-1]}")
-                if return_every_modelisation:
-                    return (L[ind1], L[ind2]), L
-                else:
-                    return (L[ind1], L[ind2]), L
-            else:return None, L
+        max1, max2, ind1, ind2 = 0, 1, None, None
+        for i in range(len(L)):
+            if L[i][1][1][1] > max1:
+                max1 = L[i][1][1][1]
+                ind1 = i
+            if L[i][1][1][0] < max2:
+                max2 = L[i][1][1][0]
+                ind2 = i
+        if print_tests:
+            for i in L:
+                print(f"tested with {i[-1]} : coef = {i[0]} ; kol = {i[1]}")
+        if ind1 == ind2:
+            if print_tests: print(f"got : {L[ind1][-1]}")
+            if return_every_modelisation:
+                return L[ind1], L
+            else:
+                return L[ind1]
+        elif ind1 is not None and ind2 is not None:
+            if print_tests: print(f"got : {L[ind1][-1]} and {L[ind2][-1]}")
+            if return_every_modelisation:
+                return (L[ind1], L[ind2]), L
+            else:
+                return (L[ind1], L[ind2])
+        else:return None, L
 
 
 class fit_func():
