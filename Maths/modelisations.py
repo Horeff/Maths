@@ -129,7 +129,7 @@ class model():
             L.append(k)
         return L
 
-    def fit(self, x : iter, y : iter, print_tests : bool = False):
+    def fit(self, x : iter, y : iter, print_tests : bool = False, return_every_modelisation : bool = False):
         L = []
         for func in self.functions.funcs:
             try:
@@ -139,23 +139,26 @@ class model():
                 kol = self.Kol_Smir((x, y), (x, Y))
                 L.append((coef, kol, res, func))
             except:pass
-        max1, max2, ind1, ind2 = 0, 1, None, None
-        for i in range(len(L)):
-            if L[i][1][1][1] > max1:
-                max1 = L[i][1][1][1]
-                ind1 = i
-            if L[i][1][1][0] < max2:
-                max2 = L[i][1][1][0]
-                ind2 = i
-        if print_tests:
-            for i in L:
-                print(f"tested with {i[-1]} : coef = {i[0]} ; kol = {i[1]}")
-        if ind1 == ind2:
-            if print_tests: print(f"got : {L[ind1][-1]}")
-            return L[ind1]
+        if return_every_modelisation:
+            return L
         else:
-            if print_tests: print(f"got : {L[ind1][-1]} and {L[ind2][-1]}")
-            return L[ind1], L[ind2]
+            max1, max2, ind1, ind2 = 0, 1, None, None
+            for i in range(len(L)):
+                if L[i][1][1][1] > max1:
+                    max1 = L[i][1][1][1]
+                    ind1 = i
+                if L[i][1][1][0] < max2:
+                    max2 = L[i][1][1][0]
+                    ind2 = i
+            if print_tests:
+                for i in L:
+                    print(f"tested with {i[-1]} : coef = {i[0]} ; kol = {i[1]}")
+            if ind1 == ind2:
+                if print_tests: print(f"got : {L[ind1][-1]}")
+                return L[ind1]
+            else:
+                if print_tests: print(f"got : {L[ind1][-1]} and {L[ind2][-1]}")
+                return L[ind1], L[ind2]
 
 
 class fit_func():
