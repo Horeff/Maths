@@ -3,7 +3,7 @@ from scipy import stats as sp
 from Algorithmique import fig
 from matplotlib import pyplot as plt
 from scipy import optimize
-from Functions import functions
+from Maths.Functions import functions
 from inspect import getmembers, ismethod
 
 class model():
@@ -161,9 +161,14 @@ class model():
 class fit_func():
     def __init__(self):
         self.funcs = self.fitting_funcs()
+        self.names = self.fitting_funcs_names()
 
     def fitting_funcs(self):
         g = [a[1] for a in getmembers(functions) if ismethod(a[1])]
+        return g
+    
+    def fitting_funcs_names(self):
+        g = [a[0] for a in getmembers(functions) if ismethod(a[1])]
         return g
 
 
