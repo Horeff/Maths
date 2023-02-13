@@ -129,6 +129,26 @@ class model():
             L.append(k)
         return L
 
+    def Li(self, x, i, l):
+        return np.prod([x - l[j] for j in range(len(l)) if j != i]) / np.prod(
+            [l[i] - l[j] for j in range(len(l)) if j != i])
+
+    def P(self, x, f, l):
+        return np.sum([f(l[i]) * self.Li(x, i, l) for i in range(len(l))])
+
+    def Polynome_de_Lagrange(self, f, a: float, b: float, n: int, c: float, d: float):
+        ls = np.linspace(a, b, n + 1)
+        absc = np.linspace(c, d, 150)
+        x = [self.P(i, f, ls) for i in absc]
+        y = [f(i) for i in absc]
+        plt.figure()
+        plt.title(f"Tracé pourune interpolation en {n} points")
+        plt.plot(absc, x, label="Polynome")
+        plt.plot(absc, y, label="Fonction")
+        plt.legend()
+        plt.show()
+        return absc, x
+
     def fit(self, x : iter, y : iter, print_tests : bool = False, return_every_modelisation : bool = False):
         L = []
         for func in self.functions.funcs:
