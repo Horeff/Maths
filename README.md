@@ -1,14 +1,14 @@
 ## Maths
 Module de mathématiques pour étudier des fonctions, résoudre des équations, etc
 
-#Fonctions : 
+# Fonctions : 
   - Maths.func(<expression>, <nom>)
   crée la fonction, et calcule si possible la dérivée, la primitive, l'inverse, les limites en + et - l'infini. 
   Pour y accéder : <nom>.der ; <nom>.int ; <nom>.inv ; <nom>.limpinf ; <nom>.limminf
   Pour d'autres limites, il faut les calculer avec la fonction <nom>.limit(<valeur>) (mettre sp.oo pour l'infini)
 
 
-  #Modelisations : 
+# Modelisations : 
    - fit: Modélise pour toutes les fonctions disponibles (Voir "fonctions" ci dessous) et renvoie la meilleure modélisation selon le test de Kolmogorov Smirnov et un coefficient de correlation. 
   Pour renvoyer toutes les modélisations : return_every_modelisation=True
   print_tests ne sert qu'à voir les valeurs des résultats de tous les tests effectués pour toutes les modélisations.
@@ -29,7 +29,7 @@ Module de mathématiques pour étudier des fonctions, résoudre des équations, 
  (5) - les paramètres trouvés lors de la modélisation dans l'ordre : (a, b, ...) voir fonctions disponibles ci dessous
  (6) - L'adresse de la fonction qui modélise
   
-  #fonctions disponibles pour modélisations : 
+# fonctions disponibles pour modélisations : 
    - lin: a * x+b 
   ```lin(x, a, b)```
    - exp: a * exp(x*b) + c 
