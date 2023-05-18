@@ -19,15 +19,24 @@ Module de mathématiques pour étudier des fonctions, résoudre des équations, 
   ```[(1)((2) 0.4312706260716667, ((3) True, (4) KstestResult(statistic, pvalue)), (5) array([2.32481706e-01, 2.81973905e+02]), (6) <bound method func.lin of <Maths.Functions.func object at 0x7fcee29b18e0>>), (...]```
   
  (1) - dépend de return_every_modelisation:
+  
       Si True:
             renvoie une liste des tuples contenant les informations sur toutes les modélisations.
+  
       Si False:
             renvoie une liste de l'unique tuple contenant les informations sur la meilleure modélisation.
+  
  (2) - le résultat du coefficient de correlation
+  
  (3) - Si la fonction modélise ou non la répartition (True/False) (donné par le coefficient de correlation)
+  
  (4) - résultat du test de Kolmogorov Smirnov
+  
  (5) - les paramètres trouvés lors de la modélisation dans l'ordre : (a, b, ...) voir fonctions disponibles ci dessous
+  
  (6) - L'adresse de la fonction qui modélise
+  
+  
   
 ## fonctions disponibles pour modélisations : 
    - lin: a * x+b 
