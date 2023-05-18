@@ -38,7 +38,7 @@ Module de mathématiques pour étudier des fonctions, résoudre des équations, 
 ## fonctions disponibles pour modélisations : 
    - lin: ```a * x+b```
   
- si True: lin(x, a, b)
+  *lin(x, a, b)*
   
    - exp: a * exp(x*b) + c 
   ```exp(x, a, b, c)```
