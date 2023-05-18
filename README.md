@@ -52,23 +52,23 @@ pip install git+https://github.com/Horeff/Maths.git#egg=Maths
 lin(x, a, b)
   ```
   
-   - exp: a * exp(x*b) + c 
+   - exp: `a * exp(x*b) + c`
   ```
   exp(x, a, b, c)
   ```
-   - sin: a * sin(b*x + c) + d 
+   - sin: `a * sin(b*x + c) + d`
   ```
   sin(x, a, b, c, d)
   ```
-   - pol: a*x**2 + b*x + c 
+   - pol: `a*x**2 + b*x + c`
   ```
   pol(x, a, b, c)
   ```
-   - pol3: a*x**3 + b*x**2 + c*x + d
+   - pol3: `a*x**3 + b*x**2 + c*x + d`
   ```
   pol3(x, a, b, c, d)
   ```
-   - pol4: a*x**4 + b*x**3 + c*x**2 + d*x + e 
+   - pol4: `a*x**4 + b*x**3 + c*x**2 + d*x + e
   ```
   pol4(x, a, b, c, d, e)
   ```
