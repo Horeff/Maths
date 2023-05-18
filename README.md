@@ -20,10 +20,8 @@ Module de mathématiques pour étudier des fonctions, résoudre des équations, 
   
  (1) - dépend de return_every_modelisation:
   
-      Si True:
-            renvoie une liste des tuples contenant les informations sur toutes les modélisations.
-      Si False:
-            renvoie une liste de l'unique tuple contenant les informations sur la meilleure modélisation.
+      Si True: renvoie une liste des tuples contenant les informations sur toutes les modélisations.
+      Si False: renvoie une liste de l'unique tuple contenant les informations sur la meilleure modélisation.
   
  (2) - le résultat du coefficient de correlation
   
