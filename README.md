@@ -13,9 +13,9 @@ Module de mathématiques pour étudier des fonctions, résoudre des équations, 
   Pour renvoyer toutes les modélisations : return_every_modelisation=True
   print_tests ne sert qu'à voir les valeurs des résultats de tous les tests effectués pour toutes les modélisations.
   
-  "Syntaxe" :```fit(x, y, print_tests: bool = False, return_every_modelisation: bool = False)```
+  Syntaxe:```fit(x, y, print_tests: bool = False, return_every_modelisation: bool = False)```
   
-  "renvoie" : 
+  renvoie: 
   ```[(1)((2) 0.4312706260716667, ((3) True, (4) KstestResult(statistic, pvalue)), (5) array([2.32481706e-01, 2.81973905e+02]), (6) <bound method func.lin of <Maths.Functions.func object at 0x7fcee29b18e0>>), (...]```
   
  (1) - dépend de return_every_modelisation:
