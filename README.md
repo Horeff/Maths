@@ -35,7 +35,7 @@ pip install git+https://github.com/Horeff/Maths.git#egg=Maths
   
  (2) - le résultat du coefficient de correlation
   
- (3) - Si la fonction modélise ou non la répartition (True/False) (donné par le coefficient de correlation)
+ (3) - Si la fonction modélise ou non la répartition (True/False) (donné par le test de Kolmogorov Smirnov)
   
  (4) - résultat du test de Kolmogorov Smirnov
   
