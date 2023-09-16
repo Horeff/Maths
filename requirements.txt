@@ -1,0 +1,4 @@
+numpy
+scipy
+sympy
+Algorithmique @ git+https://github.com/Horeff/Algorithmique.git
