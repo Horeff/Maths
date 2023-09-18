@@ -166,7 +166,7 @@ class model():
                 if self.functions.names[i] == model:
                     try:
                         res = optimize.curve_fit(self.functions.funcs[i], xdata = x, ydata = y)[0]
-                        Y = [func(i, *res) for i in x]
+                        Y = [self.functions.funcs[i](j, *res) for j in x]
                         coef = self.Coef_correl((x, y), (x, Y))
                         kol = self.Kol_Smir((x, y), (x, Y))
                         L.append((coef, kol, res, self.functions.funcs[i]))
