@@ -149,16 +149,27 @@ class model():
         plt.show()
         return absc, x
 
-    def fit(self, x : iter, y : iter, print_tests : bool = False, return_every_modelisation : bool = False):
+    def fit(self, x : iter, y : iter, print_tests : bool = False, return_every_modelisation : bool = False, model = False):
         L = []
-        for func in self.functions.funcs:
-            try:
-                res = optimize.curve_fit(func, xdata = x, ydata = y)[0]
-                Y = [func(i, *res) for i in x]
-                coef = self.Coef_correl((x, y), (x, Y))
-                kol = self.Kol_Smir((x, y), (x, Y))
-                L.append((coef, kol, res, func))
-            except:pass
+        if not model:
+            for func in self.functions.funcs:
+                try:
+                    res = optimize.curve_fit(func, xdata = x, ydata = y)[0]
+                    Y = [func(i, *res) for i in x]
+                    coef = self.Coef_correl((x, y), (x, Y))
+                    kol = self.Kol_Smir((x, y), (x, Y))
+                    L.append((coef, kol, res, func))
+                except:pass
+        else:
+            for i in range(len(self.functions.funcs)):
+                if self.functions.names[i] == model:
+                    try:
+                        res = optimize.curve_fit(self.functions.funcs[i], xdata = x, ydata = y)[0]
+                        Y = [func(i, *res) for i in x]
+                        coef = self.Coef_correl((x, y), (x, Y))
+                        kol = self.Kol_Smir((x, y), (x, Y))
+                        L.append((coef, kol, res, self.functions.funcs[i]))
+                    except:pass
         if print_tests:
             for i in L:
                 print(f"tested with {i[-1]} : coef = {i[0]} ; kol = {i[1]}")
