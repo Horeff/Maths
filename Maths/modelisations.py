@@ -162,6 +162,7 @@ class model():
                 except:pass
         else:
             for i in range(len(self.functions.funcs)):
+                print(self.functions.names[i], model)
                 if self.functions.names[i] == model:
                     try:
                         res = optimize.curve_fit(self.functions.funcs[i], xdata = x, ydata = y)[0]
