@@ -52,7 +52,6 @@ class fonction():
       fig=plt.figure()
       plt.ion()
       self.show()
-      plt.show()
       plt.draw()
       fig.savefig("generation_mpl_save_to_send.png")
       self.rep = "generation_mpl_save_to_send.png"
@@ -72,4 +71,4 @@ class fonction():
     return self.e.subs(var,sp.simplify(expr))
 
   def show(self):
-    sp.plot(self.e,(self.x,-6,6), title=f"Courbe de f(x) = ${sp.latex(self.e)}$", show=False)
+    sp.plot(self.e,(self.x,-6,6), title=f"Courbe de f(x) = ${sp.latex(self.e)}$")
