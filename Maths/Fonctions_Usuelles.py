@@ -49,10 +49,7 @@ class fonction():
     except:
       self.limminf = None
     try:
-      fig=plt.figure()
-      plt.ion()
-      self.show()
-      plt.draw()
+      fig = self.show()
       fig.savefig("generation_mpl_save_to_send.png")
       self.rep = "generation_mpl_save_to_send.png"
     except:
@@ -71,4 +68,4 @@ class fonction():
     return self.e.subs(var,sp.simplify(expr))
 
   def show(self):
-    sp.plot(self.e,(self.x,-6,6), title=f"Courbe de f(x) = ${sp.latex(self.e)}$")
+    return sp.plot(self.e,(self.x,-6,6), title=f"Courbe de f(x) = ${sp.latex(self.e)}$", show=False)
