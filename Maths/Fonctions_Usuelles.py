@@ -50,8 +50,7 @@ class fonction():
       self.limminf = None
     try:
       fig = self.show()
-      print(fig)
-      fig.savefig("generation_mpl_save_to_send.png")
+      fig.save("generation_mpl_save_to_send.png")
       self.rep = "generation_mpl_save_to_send.png"
     except:
       self.rep = None
