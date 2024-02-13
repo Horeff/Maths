@@ -52,7 +52,6 @@ class fonction():
       fig=plt.figure()
       plt.ion()
       self.show()
-      fig1 = plt.gcf()
       plt.show()
       plt.draw()
       plt.close(fig)
