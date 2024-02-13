@@ -54,7 +54,6 @@ class fonction():
       self.show()
       plt.show()
       plt.draw()
-      plt.close(fig)
       fig.savefig("generation_mpl_save_to_send.png")
       self.rep = "generation_mpl_save_to_send.png"
     except:
