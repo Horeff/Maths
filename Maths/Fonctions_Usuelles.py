@@ -52,8 +52,11 @@ class fonction():
       fig=plt.figure()
       plt.ion()
       self.show()
+      fig1 = plt.gcf()
+      plt.show()
+      plt.draw()
       plt.close(fig)
-      plt.savefig("generation_mpl_save_to_send.png")
+      fig.savefig("generation_mpl_save_to_send.png")
       self.rep = "generation_mpl_save_to_send.png"
     except:
       self.rep = None
