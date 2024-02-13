@@ -68,4 +68,4 @@ class fonction():
     return self.e.subs(var,sp.simplify(expr))
 
   def show(self):
-    return sp.plot(self.e,(self.x,-6,6), title=f"Courbe de f(x) = ${sp.latex(self.e)}$", show=False)
+    return sp.plot(self.e,(self.x,-6,6), title=f"Courbe de {self.name}(x) = ${sp.latex(self.e)}$", show=False)
